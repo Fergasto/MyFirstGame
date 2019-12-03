@@ -10,7 +10,7 @@ $(document).ready(function () {
     });
 
     $("#start-button").click(function(){
-        newInterval2 = setInterval(function () {
+        newInterval = setInterval(function () {
             $("#player-two__scale").height(function (i, value){
                 i=value - 2;
                 return i;
@@ -22,10 +22,6 @@ $(document).ready(function () {
             }, 500);  
     });
 });
-
-
-
-
 
 let playerOneScore=0;
 let playerTwoScore=0;
