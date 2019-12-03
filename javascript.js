@@ -8,19 +8,21 @@ $(document).ready(function () {
             handelSecondPlayer();
         }
     });
-    newInterval1 = setInterval(function () {
-        $("#player-one__scale").height(function (i, value){
-            i=value - 2;
-            return i;
-        });
-        }, 500);
-    newInterval2 = setInterval(function () {
-        $("#player-two__scale").height(function (i, value){
-            i=value - 2;
-            return i;
-        });
-        }, 500);   
+
+    $("#start-button").click(function(){
+        newInterval2 = setInterval(function () {
+            $("#player-two__scale").height(function (i, value){
+                i=value - 2;
+                return i;
+            });
+            $("#player-one__scale").height(function (i, value){
+                i=value - 2;
+                return i;
+            });
+            }, 500);  
+    });
 });
+
 
 
 
