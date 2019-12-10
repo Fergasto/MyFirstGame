@@ -8,6 +8,7 @@ $(document).ready(function () {
             handelSecondPlayer();
         }
     });
+    
 
     $("#start-button").click(function(){
         newInterval = setInterval(function () {
@@ -19,8 +20,19 @@ $(document).ready(function () {
                 i=value - 2;
                 return i;
             });
+            let h1 = $("#player-one__scale").height();
+            let h2 = $("#player-two__scale").height();
+
+            // Тут задается верхний порог столбца
+
+            if (h1 >= 110 || h2 >=110) {
+                clearInterval(newInterval);
+                console.log ("finish");
+            };
             }, 500);  
     });
+    
+    
 });
 
 let playerOneScore=0;
