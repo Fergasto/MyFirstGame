@@ -25,9 +25,12 @@ $(document).ready(function () {
 
             // Тут задается верхний порог столбца
 
-            if (h1 >= 110 || h2 >=110) {
+            if (h1 >= 110) {
                 clearInterval(newInterval);
-                console.log ("finish");
+                alert("Player One WIN!!!");
+            } if (h2 >=110) {
+                clearInterval(newInterval);
+                alert("Player Two WIN!!!");
             };
             }, 500);  
     });
