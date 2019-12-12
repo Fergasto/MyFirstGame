@@ -39,3 +39,13 @@ body {
     justify-self: center;
     align-self: center;
 }
+#eye {
+    position: absolute;
+    left: 950px;
+    top:100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: red;
+
+}
