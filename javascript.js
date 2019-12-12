@@ -25,71 +25,97 @@ $(document).ready(function () {
             let h2 = $("#player-two__scale").height();
 
             // Тут задается верхний порог столбца
-
-            if (h1 >= 110) {
+            let winnerScore = 150;
+            if (h1 >= winnerScore) {
                 clearInterval(newInterval);
-                clearInterval(eyeInterval);
+                clearTimeout(eyeInterval);
                 alert("Player One WIN!!!");
-            } if (h2 >=110) {
-                clearInterval(eyeInterval);
+            } if (h2 >=winnerScore) {
+                clearTimeout(eyeInterval);
                 clearInterval(newInterval);
                 alert("Player Two WIN!!!");
             };
-            }, 500);
-            
-            function randomInteger(min, max) {
-                // получить случайное число от (min-0.5) до (max+0.5)
-                let rand = min - 0.5 + Math.random() * (max - min + 1);
-                return Math.round(rand);
-            };
+        }, 500);
 
-        let interval = randomInteger(2000, 5000);
-        let scale = 0;
-        eyeInterval = setInterval(function () {
-            scale++
-            if (scale%2==0) {
-                changeColor ("green")
-            } else {changeColor("red")};
-        }, interval);   
+        let eye = document.getElementById("eye");
+        eye.style.backgroundColor = "red";
+        let scale = 1;
+        
+            eyeInterval = setTimeout(function tick() { 
+                eyeInterval =  setTimeout(tick,randomInteger(1000,5000))
+                scale++
+                if (scale%2==0) {
+                    changeColor ("green")
+                } else {changeColor("red")};
+                }, randomInteger(1000,5000));
+           
     });
-
+    function changeColor (newColor) {
+        eye.style.backgroundColor = newColor;
+    };
     
+    function randomInteger(min, max) {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+        
+    };  
+    
+    function handelFirstPlayer() {
+        if (eye.style.backgroundColor == "red"){
+            
+            $("#player-one__scale").height(function(i, value){
+                i=value + 2;
+                return i;
+            });
+            $("#player-one__scale__score").text(function(i, value){
+                value=Number(value);
+                i= value + 1;
+                return i;
+            });
+        } else {
+            $("#player-one__scale").height(function(i, value){
+                i=value - 2;
+                return i;
+            });
+            $("#player-one__scale__score").text(function(i, value){
+                value=Number(value);
+                i= value - 1;
+                return i;
+            });
+        };
+    };
+    
+    function handelSecondPlayer() {
+        if (eye.style.backgroundColor == "red") {
+            $("#player-two__scale").height(function(i, value){
+                i=value + 2;
+                return i;
+            });
+            $("#player-two__scale__score").text(function(i, value){
+                value=Number(value);
+                i= value + 1;
+                return i;
+            });
+        } else {
+            $("#player-two__scale").height(function(i, value){
+                i=value - 2;
+                return i;
+            });
+            $("#player-two__scale__score").text(function(i, value){
+                value=Number(value);
+                i= value - 1;
+                return i;
+            });
+        };
+    };
 });
 
 
-let playerOneScore=0;
-let playerTwoScore=0;
 
-function changeColor (newColor) {
-    let eye = document.getElementById("eye");
-    eye.style.backgroundColor = newColor;
-};
 
-function handelFirstPlayer() {
-    playerOneScore++;
-    $("#player-one__scale").height(function(i, value){
-        i=value + 2;
-        return i;
-    });
-    $("#player-one__scale__score").text(function(i, value){
-        value=Number(value);
-        i= value + 1;
-        return i;
-    });
-};
 
-function handelSecondPlayer() {
-    playerTwoScore++;
-    $("#player-two__scale").height(function(i, value){
-        i=value + 2;
-        return i;
-    });
-    $("#player-two__scale__score").text(function(i, value){
-        value=Number(value);
-        i= value + 1;
-        return i;
-    });
-};
+
 
 
 
