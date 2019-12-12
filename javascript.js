@@ -12,6 +12,7 @@ $(document).ready(function () {
 
     $("#start-button").click(function(){
         newInterval = setInterval(function () {
+            
             $("#player-two__scale").height(function (i, value){
                 i=value - 2;
                 return i;
@@ -27,19 +28,42 @@ $(document).ready(function () {
 
             if (h1 >= 110) {
                 clearInterval(newInterval);
+                clearInterval(eyeInterval);
                 alert("Player One WIN!!!");
             } if (h2 >=110) {
+                clearInterval(eyeInterval);
                 clearInterval(newInterval);
                 alert("Player Two WIN!!!");
             };
-            }, 500);  
+            }, 500);
+            
+            function randomInteger(min, max) {
+                // получить случайное число от (min-0.5) до (max+0.5)
+                let rand = min - 0.5 + Math.random() * (max - min + 1);
+                return Math.round(rand);
+            };
+
+        let interval = randomInteger(2000, 5000);
+        let scale = 0;
+        eyeInterval = setInterval(function () {
+            scale++
+            if (scale%2==0) {
+                changeColor ("green")
+            } else {changeColor("red")};
+        }, interval);   
     });
-    
+
     
 });
 
+
 let playerOneScore=0;
 let playerTwoScore=0;
+
+function changeColor (newColor) {
+    let eye = document.getElementById("eye");
+    eye.style.backgroundColor = newColor;
+};
 
 function handelFirstPlayer() {
     playerOneScore++;
