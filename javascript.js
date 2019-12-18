@@ -39,14 +39,13 @@ $(document).ready(function () {
 
         let eye = document.getElementById("eye");
         eye.style.backgroundColor = "red";
-        let scale = 1;
+        
         
             eyeInterval = setTimeout(function tick() { 
                 eyeInterval =  setTimeout(tick,randomInteger(1000,5000))
-                scale++
-                if (scale%2==0) {
-                    changeColor ("green")
-                } else {changeColor("red")};
+                if (eye.style.backgroundColor == "green") {
+                    changeColor ("red")
+                } else {changeColor("green")};
                 }, randomInteger(1000,5000));
            
     });
@@ -62,7 +61,7 @@ $(document).ready(function () {
     };  
     
     function handelFirstPlayer() {
-        if (eye.style.backgroundColor == "red"){
+        if (eye.style.backgroundColor == "green"){
             
             $("#player-one__scale").height(function(i, value){
                 i=value + 2;
@@ -87,7 +86,7 @@ $(document).ready(function () {
     };
     
     function handelSecondPlayer() {
-        if (eye.style.backgroundColor == "red") {
+        if (eye.style.backgroundColor == "green") {
             $("#player-two__scale").height(function(i, value){
                 i=value + 2;
                 return i;
